@@ -13,6 +13,7 @@ const form = document.getElementById('benefits-form');
 const benefitsList = document.getElementById('benefits-list');
 const noBenefits = document.getElementById('no-benefits');
 const restartBtn = document.getElementById('restart-btn');
+const restartBtnTop = document.getElementById('restart-btn-top');
 const retryBtn = document.getElementById('retry-btn');
 
 // Navigation elements
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupEventListeners() {
     form.addEventListener('submit', handleFormSubmit);
     restartBtn.addEventListener('click', restartQuestionnaire);
+    restartBtnTop.addEventListener('click', restartQuestionnaire);
     retryBtn.addEventListener('click', loadBenefitsData);
     
     // Navigation event listeners
