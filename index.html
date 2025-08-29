@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Benefits Pre-Screener</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Questionnaire Section -->
+        <div id="questionnaire" class="section active">
+            <h2>Benefits Eligibility Pre-Screener</h2>
+            <p class="intro-text">Answer a few quick questions to find municipal benefits you may be eligible for. Your responses are not stored or transmitted.</p>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="current-question">1</span> of <span id="total-questions">6</span>
+                </div>
+            </div>
+            
+            <form id="benefits-form">
+                <!-- Age Group -->
+                <div class="question-group question-slide active" data-question="1">
+                    <label class="question-label">What is your age group?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="age" value="under18" required>
+                            <span>Under 18</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="age" value="18-64" required>
+                            <span>18-64</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="age" value="65plus" required>
+                            <span>65 or older</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Household Income -->
+                <div class="question-group question-slide" data-question="2">
+                    <label class="question-label">What is your annual household income range?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="income" value="low" required>
+                            <span>Under $30,000</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="income" value="moderate" required>
+                            <span>$30,000 - $60,000</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="income" value="high" required>
+                            <span>Over $60,000</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Household Size -->
+                <div class="question-group question-slide" data-question="3">
+                    <label class="question-label">How many people live in your household?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="household" value="single" required>
+                            <span>1 person</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="household" value="two" required>
+                            <span>2 people</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="household" value="three" required>
+                            <span>3 people</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="household" value="large" required>
+                            <span>4 and more people</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Employment Status -->
+                <div class="question-group question-slide" data-question="4">
+                    <label class="question-label">What is your employment status?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="employment" value="employed" required>
+                            <span>Employed</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="employment" value="unemployed" required>
+                            <span>Unemployed</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="employment" value="retired" required>
+                            <span>Retired</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="employment" value="student" required>
+                            <span>Student</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="employment" value="not-say" required>
+                            <span>Rather not say</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Housing Status -->
+                <div class="question-group question-slide" data-question="5">
+                    <label class="question-label">What is your housing situation?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="housing" value="owner" required>
+                            <span>Own my home</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="housing" value="renter" required>
+                            <span>Rent my home</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="housing" value="other" required>
+                            <span>Other arrangement</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Special Circumstances -->
+                <div class="question-group question-slide" data-question="6">
+                    <label class="question-label">Do any of these apply to you or your household? (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="circumstances" value="disability">
+                            <span>Someone has a disability</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="circumstances" value="veteran">
+                            <span>Military veteran in household</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="circumstances" value="children">
+                            <span>Children under 18 in household</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="circumstances" value="none">
+                            <span>None of the above</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-btn" class="btn-secondary" style="display: none;">Previous</button>
+                    <button type="button" id="next-btn" class="btn-primary">Next</button>
+                    <button type="submit" id="submit-btn" class="btn-primary" style="display: none;">Find My Benefits</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="section">
+            <h2>Your Potential Benefits</h2>
+            <p class="results-intro">Based on your responses, you may be eligible for the following benefits. Click on any benefit to learn more and apply.</p>
+            
+            <div id="benefits-list" class="benefits-container">
+                <!-- Benefits will be populated here -->
+            </div>
+            
+            <div id="no-benefits" class="no-results" style="display: none;">
+                <h3>No Matching Benefits Found</h3>
+                <p>Based on your responses, we couldn't find any benefits that match your current situation. Benefits programs change frequently, so please check back later or contact your local municipal office for more information.</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="restart-btn" class="btn-secondary">Start Over</button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading benefits data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-message" style="display: none;">
+            <h3>Unable to Load Benefits Data</h3>
+            <p>We're having trouble loading the benefits information. Please try refreshing the page or contact support if the problem persists.</p>
+            <button id="retry-btn" class="btn-secondary">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

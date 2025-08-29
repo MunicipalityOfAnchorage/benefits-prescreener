@@ -1,0 +1,21 @@
+Service,Department,Description,Age,Income,Disability,Veteran,Own_Housing,Age Min,Age Max,URL
+WIC - Women Infants and Children,Anchorage Health Department,Women Infants and Children implemented by the Municipality of Anchorage,,TRUE,,,,,,https://www.muni.org/departments/health/wic/pages/howtoapply.aspx
+Child Care Assistance,State of Alaska,Child Care Assistance for the Municipality of Anchorage region,,TRUE,,,,,,https://health.alaska.gov/dpa/Pages/ccare/families.aspx
+Residential Property Tax Exemptions,Property Appraisal,Property Tax Exemption for Residents,,,,,TRUE,,,https://www.muni.org/Departments/finance/property_appraisal/Exemption/pages/default.aspx
+Senior Property Tax Exemptions,Property Appraisal,Property Tax Exemption for Seniors 65+ years old,TRUE,,,,TRUE,65,,https://www.muni.org/Departments/finance/property_appraisal/Exemption/pages/default.aspx
+Disabled Veteran Property Tax Exemptions,Property Appraisal,Property Tax Exemption for Veterans,,,TRUE,TRUE,TRUE,,,https://www.muni.org/Departments/finance/property_appraisal/Exemption/pages/default.aspx
+Home Modification and Accessibility Grant,Neighbor Works,Provides grants up to $15000 for accessibility modifications in homes for those with disabilities,,,TRUE,,,,,https://nwalaska.org/programs-events/homeowners
+People Mover Half Fare Senior,Transit,Half Fare includes seniors age 60 and over,TRUE,,,,,60,,https://www.muni.org/Departments/transit/PeopleMover/pages/halffareapplicationpage.aspx
+People Mover Half Fare Medicare,Transit,Half Fare includes individuals with Medicare cards,TRUE,,TRUE,,,,,https://www.muni.org/Departments/transit/PeopleMover/pages/halffareapplicationpage.aspx
+People Mover Youth Connect,Transit,Free for youth for some Anchorage School District Schools,TRUE,,,,,5,18,https://www.muni.org/Departments/transit/PeopleMover/Pages/YouthConnect.aspx
+People Mover Half Fare Veterans,Transit,Half Fare includes Veterans,,,,,,,,https://www.muni.org/Departments/transit/PeopleMover/pages/halffareapplicationpage.aspx
+Emergency Services,Anchorage Health Department (ADRC),Emergency financial assistance to prevent homelessness,,TRUE,TRUE,,,,,https://www.muni.org/Departments/health/PHIP/pages/emergency_outreach.aspx
+AWWU Coins Can Count Program,Anchorage Health Department (ADRC),Assistance for AWWU bills,,TRUE,,,,,,https://www.awwu.biz/customer-service/account-assistance/coins-can-count
+Chugach Electric Hardship Assistance,Anchorage Health Department (ADRC),One time grant up to $500 for Chugach Electric bills,,TRUE,,,,,,https://www.muni.org/Departments/health/PHIP/pages/emergency_outreach.aspx
+Chugach Manor Chugach View Services,Anchorage Health Department (ADRC),Service coordination for seniors and individuals with disabilities,,,TRUE,,,,,https://www.muni.org/Departments/health/PHIP/ADRC/pages/default.aspx
+AnchorRides ADA Trips,Transit,Transportation for individuals with disabilities that prevent using fixed-route bus,,,TRUE,,,,,https://www.muni.org/Departments/transit/AnchorRides/Pages/default.aspx
+AnchorRides Senior Trips,Transit,Point to point rides for seniors Age 60+,TRUE,,,,,60,,https://www.muni.org/Departments/transit/AnchorRides/Pages/default.aspx
+Seniors ride free on Wednesday People Mover,Transit,Show ID and 65 and over,TRUE,,,,,65,,https://www.muni.org/Departments/transit/PeopleMover/Pages/programsandpromotions.aspx
+Youth ride free during summer on People Mover,Transit,Show ID or say age for 5-18 year olds,TRUE,,,,,5,18,https://www.muni.org/Departments/transit/PeopleMover/Pages/programsandpromotions.aspx
+People Mover U-Pass,Transit,Students and employees ride People Mover for free,,,,,,,,https://www.muni.org/Departments/transit/PeopleMover/Pages/programsandpromotions.aspx
+Snow Removal for Seniors,Right of Way,Right of Way helps seniors 65+ shovel their driveways,TRUE,,,,,65,,https://www.muni.org/anchorageworks/CRM/ServiceRequest/ServiceRequest/ROW?serviceRequestType=snow

@@ -1,0 +1,381 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* Section Management */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Typography */
+h2 {
+    color: #2c5aa0;
+    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+h3 {
+    color: #2c5aa0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.intro-text, .results-intro {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+/* Form Styles */
+#benefits-form {
+    max-width: 600px;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-bottom: 32px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #2c5aa0;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 16.67%; /* 1/6 of the way */
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Question Navigation */
+.question-group {
+    margin-bottom: 32px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.question-slide {
+    display: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.question-slide.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+.navigation-buttons button {
+    min-width: 120px;
+}
+
+.question-label {
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2c5aa0;
+    margin-bottom: 12px;
+}
+
+/* Radio Button Styles */
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.radio-option:hover, .checkbox-option:hover {
+    border-color: #2c5aa0;
+    background-color: #f0f4f8;
+}
+
+.radio-option input, .checkbox-option input {
+    margin-right: 12px;
+    transform: scale(1.2);
+}
+
+.radio-option input:checked + span,
+.checkbox-option input:checked + span {
+    color: #2c5aa0;
+    font-weight: 500;
+}
+
+.radio-option:has(input:checked),
+.checkbox-option:has(input:checked) {
+    border-color: #2c5aa0;
+    background-color: #e8f0fe;
+}
+
+/* Button Styles */
+.btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    background-color: #2c5aa0;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1e3d6f;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Benefits Results */
+.benefits-container {
+    margin-bottom: 32px;
+}
+
+.benefit-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: white;
+    transition: all 0.2s ease;
+}
+
+.benefit-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-color: #2c5aa0;
+}
+
+.benefit-title {
+    color: #2c5aa0;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.benefit-department {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.benefit-description {
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.benefit-link {
+    display: inline-block;
+    color: #2c5aa0;
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid #2c5aa0;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.benefit-link:hover {
+    background-color: #2c5aa0;
+    color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #2c5aa0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error and No Results States */
+.error-message, .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.error-message h3, .no-results h3 {
+    color: #dc3545;
+    margin-bottom: 16px;
+}
+
+.no-results h3 {
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        margin: 0;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    .question-group {
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .radio-option, .checkbox-option {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    
+    .action-buttons {
+        text-align: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .benefit-card {
+        padding: 16px;
+    }
+    
+    .benefit-title {
+        font-size: 16px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .container {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+    }
+    
+    .action-buttons {
+        display: none;
+    }
+    
+    .benefit-card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        margin-bottom: 12px;
+    }
+}
