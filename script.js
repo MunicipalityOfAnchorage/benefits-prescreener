@@ -143,8 +143,12 @@ function checkAgeEligibility(benefit) {
             userAgeMin = 0;
             userAgeMax = 17;
             break;
-        case '18-64':
+        case '18-59':
             userAgeMin = 18;
+            userAgeMax = 59;
+            break;
+        case '60-64':
+            userAgeMin = 60;
             userAgeMax = 64;
             break;
         case '65plus':
@@ -197,6 +201,17 @@ function checkCircumstancesEligibility(benefit) {
     // Check veteran-specific benefits
     if (benefit.Veteran === 'TRUE') {
         if (!userCircumstances.includes('veteran')) return false;
+    }
+    
+    // Check child-related benefits - only show if children under 18 is checked
+    const childRelatedBenefits = [
+        'WIC - Women Infants and Children',
+        'Child Care Assistance',
+        'People Mover Youth Connect'
+    ];
+    
+    if (childRelatedBenefits.includes(benefit.Service)) {
+        if (!userCircumstances.includes('children')) return false;
     }
     
     return true;
