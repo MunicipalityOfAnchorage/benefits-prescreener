@@ -217,6 +217,17 @@ function checkCircumstancesEligibility(benefit) {
     if (benefit.Service === 'People Mover Youth Connect') {
         if (userResponses.age !== 'under18' && !userCircumstances.includes('children')) return false;
     }
+
+    // Senior OR disability benefits - show for listed age groups or disability
+    const seniorOrDisabilityBenefits = {
+        'People Mover Half Fare Medicare': ['65plus'],
+        'Chugach Manor and Spruce View Services': ['60-64', '65plus']
+    };
+
+    if (seniorOrDisabilityBenefits[benefit.Service]) {
+        if (!seniorOrDisabilityBenefits[benefit.Service].includes(userResponses.age) &&
+            !userCircumstances.includes('disability')) return false;
+    }
     
     return true;
 }
