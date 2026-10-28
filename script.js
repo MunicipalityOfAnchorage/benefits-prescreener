@@ -206,12 +206,16 @@ function checkCircumstancesEligibility(benefit) {
     // Check child-related benefits - only show if children under 18 is checked
     const childRelatedBenefits = [
         'WIC - Women Infants and Children',
-        'Child Care Assistance',
-        'People Mover Youth Connect'
+        'Child Care Assistance'
     ];
-    
+
     if (childRelatedBenefits.includes(benefit.Service)) {
         if (!userCircumstances.includes('children')) return false;
+    }
+
+    // Youth rides free - show to youth themselves or households with children
+    if (benefit.Service === 'People Mover Youth Connect') {
+        if (userResponses.age !== 'under18' && !userCircumstances.includes('children')) return false;
     }
     
     return true;
