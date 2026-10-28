@@ -30,7 +30,7 @@ body {
 }
 
 /* Typography */
-h2 {
+h1, h2 {
     color: #003f7f;
     margin-bottom: 16px;
     font-size: 28px;
@@ -124,12 +124,34 @@ h3 {
     min-width: 120px;
 }
 
+fieldset.question-group {
+    width: 100%;
+    min-width: 0;
+}
+
 .question-label {
     display: block;
+    float: left;
+    width: 100%;
+    padding: 0;
     font-weight: 600;
     font-size: 16px;
     color: #003f7f;
     margin-bottom: 12px;
+}
+
+.question-label + * {
+    clear: both;
+}
+
+.question-error {
+    color: #b00020;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.question-error:empty {
+    display: none;
 }
 
 /* Radio Button Styles */

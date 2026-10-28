@@ -15,6 +15,7 @@ const noBenefits = document.getElementById('no-benefits');
 const restartBtn = document.getElementById('restart-btn');
 const restartBtnTop = document.getElementById('restart-btn-top');
 const retryBtn = document.getElementById('retry-btn');
+const questionError = document.getElementById('question-error');
 
 // Navigation elements
 const prevBtn = document.getElementById('prev-btn');
@@ -173,6 +174,21 @@ function checkIncomeEligibility(benefit) {
     
     const userIncome = userResponses.income;
     
+    // Use the program's limit for the household size when the CSV gives one
+    const householdColumns = {
+        single: 'Income Limit 1',
+        two: 'Income Limit 2',
+        three: 'Income Limit 3',
+        large: 'Income Limit 4'
+    };
+    const limit = parseInt(benefit[householdColumns[userResponses.household]]);
+    
+    if (!isNaN(limit)) {
+        // Lowest income in each answer range; show if it is under the limit
+        const incomeRangeMin = { low: 0, moderate: 30000, high: 60001 };
+        return incomeRangeMin[userIncome] < limit;
+    }
+    
     // Income-based benefits are typically for low/moderate income individuals
     return userIncome === 'low' || userIncome === 'moderate';
 }
@@ -205,7 +221,6 @@ function checkCircumstancesEligibility(benefit) {
     
     // Check child-related benefits - only show if children under 18 is checked
     const childRelatedBenefits = [
-        'WIC - Women Infants and Children',
         'Child Care Assistance'
     ];
 
@@ -213,6 +228,16 @@ function checkCircumstancesEligibility(benefit) {
         if (!userCircumstances.includes('children')) return false;
     }
 
+    // WIC - pregnant women or households with children
+    if (benefit.Service === 'WIC - Women Infants and Children') {
+        if (!userCircumstances.includes('children') && !userCircumstances.includes('pregnant')) return false;
+    }
+    
+    // U-Pass - only for students and employees of participating schools and employers
+    if (benefit.Service === 'People Mover U-Pass') {
+        if (userResponses.employment !== 'employed' && userResponses.employment !== 'student') return false;
+    }
+    
     // Youth rides free - show to youth themselves or households with children
     if (benefit.Service === 'People Mover Youth Connect') {
         if (userResponses.age !== 'under18' && !userCircumstances.includes('children')) return false;
@@ -243,6 +268,7 @@ function displayResults(matchingBenefits) {
     }
     
     showSection('results');
+    document.getElementById('results-heading').focus();
 }
 
 // Create benefit card HTML
@@ -290,6 +316,7 @@ function nextQuestion() {
         if (validateCurrentQuestion()) {
             currentQuestion++;
             updateQuestionDisplay();
+            focusCurrentQuestion();
         }
     }
 }
@@ -298,6 +325,7 @@ function prevQuestion() {
     if (currentQuestion > 1) {
         currentQuestion--;
         updateQuestionDisplay();
+        focusCurrentQuestion();
     }
 }
 
@@ -340,6 +368,12 @@ function updateQuestionDisplay() {
     }
 }
 
+// Move keyboard and screen reader focus to the current question
+function focusCurrentQuestion() {
+    const legend = document.querySelector(`[data-question="${currentQuestion}"] legend`);
+    if (legend) legend.focus();
+}
+
 function validateCurrentQuestion() {
     const currentSlide = document.querySelector(`[data-question="${currentQuestion}"]`);
     if (!currentSlide) return false;
@@ -349,13 +383,15 @@ function validateCurrentQuestion() {
     if (radioInputs.length > 0) {
         const checked = currentSlide.querySelector('input[type="radio"]:checked');
         if (!checked) {
-            alert('Please select an option before continuing.');
+            questionError.textContent = 'Please select an option before continuing.';
+            radioInputs[0].focus();
             return false;
         }
     }
     
     // For the circumstances question (checkboxes), no validation needed as "none" is an option
     
+    questionError.textContent = '';
     return true;
 }
 
@@ -364,8 +400,10 @@ function restartQuestionnaire() {
     form.reset();
     userResponses = {};
     currentQuestion = 1;
+    questionError.textContent = '';
     updateQuestionDisplay();
     showSection('questionnaire');
+    focusCurrentQuestion();
 }
 
 

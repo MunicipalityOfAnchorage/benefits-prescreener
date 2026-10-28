@@ -11,8 +11,9 @@
     <div class="container">
         <!-- Questionnaire Section -->
         <div id="questionnaire" class="section active">
-            <h2>Benefits Eligibility Pre-Screener</h2>
+            <h1>Benefits Eligibility Pre-Screener</h1>
             <p class="intro-text">Answer a few quick questions to find municipal benefits you may be eligible for. Your responses are not stored or transmitted.</p>
+            <p class="intro-text">Results show programs you <strong>may</strong> qualify for. They are not a decision: each program checks eligibility when you apply. For help, call <a href="tel:211">2-1-1</a> (Alaska 2-1-1).</p>
             
             <!-- Progress Bar -->
             <div class="progress-container">
@@ -26,8 +27,8 @@
             
             <form id="benefits-form">
                 <!-- Age Group -->
-                <div class="question-group question-slide active" data-question="1">
-                    <label class="question-label">What is your age group?</label>
+                <fieldset class="question-group question-slide active" data-question="1">
+                    <legend class="question-label" tabindex="-1">What is your age group?</legend>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="age" value="under18" required>
@@ -46,11 +47,11 @@
                             <span>65 or older</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Household Income -->
-                <div class="question-group question-slide" data-question="2">
-                    <label class="question-label">What is your annual household income range?</label>
+                <fieldset class="question-group question-slide" data-question="2">
+                    <legend class="question-label" tabindex="-1">What is your annual household income range?</legend>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="income" value="low" required>
@@ -65,11 +66,11 @@
                             <span>Over $60,000</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Household Size -->
-                <div class="question-group question-slide" data-question="3">
-                    <label class="question-label">How many people live in your household?</label>
+                <fieldset class="question-group question-slide" data-question="3">
+                    <legend class="question-label" tabindex="-1">How many people live in your household?</legend>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="household" value="single" required>
@@ -88,11 +89,11 @@
                             <span>4 and more people</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Employment Status -->
-                <div class="question-group question-slide" data-question="4">
-                    <label class="question-label">What is your employment status?</label>
+                <fieldset class="question-group question-slide" data-question="4">
+                    <legend class="question-label" tabindex="-1">What is your employment status?</legend>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="employment" value="employed" required>
@@ -115,11 +116,11 @@
                             <span>Rather not say</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Housing Status -->
-                <div class="question-group question-slide" data-question="5">
-                    <label class="question-label">What is your housing situation?</label>
+                <fieldset class="question-group question-slide" data-question="5">
+                    <legend class="question-label" tabindex="-1">What is your housing situation?</legend>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="housing" value="owner" required>
@@ -134,11 +135,11 @@
                             <span>Other arrangement</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Special Circumstances -->
-                <div class="question-group question-slide" data-question="6">
-                    <label class="question-label">Do any of these apply to you or your household? (Check all that apply)</label>
+                <fieldset class="question-group question-slide" data-question="6">
+                    <legend class="question-label" tabindex="-1">Do any of these apply to you or your household? (Check all that apply)</legend>
                     <div class="checkbox-group">
                         <label class="checkbox-option">
                             <input type="checkbox" name="circumstances" value="disability">
@@ -153,11 +154,17 @@
                             <span>Children under 18 in household</span>
                         </label>
                         <label class="checkbox-option">
+                            <input type="checkbox" name="circumstances" value="pregnant">
+                            <span>Someone is pregnant</span>
+                        </label>
+                        <label class="checkbox-option">
                             <input type="checkbox" name="circumstances" value="none">
                             <span>None of the above</span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
+
+                <p id="question-error" class="question-error" role="alert"></p>
 
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
@@ -172,7 +179,7 @@
         <div id="results" class="section">
             <div class="results-header">
                 <div class="results-header-content">
-                    <h2>Your Potential Benefits</h2>
+                    <h2 id="results-heading" tabindex="-1">Your Potential Benefits</h2>
                     <p class="results-intro">Based on your responses, you may be eligible for the following benefits. Click on any benefit to learn more and apply.</p>
                 </div>
                 <button id="restart-btn-top" class="btn-secondary restart-btn-top">Start Over</button>
@@ -184,7 +191,7 @@
             
             <div id="no-benefits" class="no-results" style="display: none;">
                 <h3>No Matching Benefits Found</h3>
-                <p>Based on your responses, we couldn't find any benefits that match your current situation. Benefits programs change frequently, so please check back later or contact your local municipal office for more information.</p>
+                <p>Based on your responses, we couldn't find any benefits that match your current situation. Benefits programs change frequently, so please check back later or call <a href="tel:211">2-1-1</a> (Alaska 2-1-1) for help finding programs.</p>
             </div>
             
             <div class="action-buttons">
@@ -201,7 +208,7 @@
         <!-- Error State -->
         <div id="error" class="error-message" style="display: none;">
             <h3>Unable to Load Benefits Data</h3>
-            <p>We're having trouble loading the benefits information. Please try refreshing the page or contact support if the problem persists.</p>
+            <p>We're having trouble loading the benefits information. Please try refreshing the page. If the problem continues, call <a href="tel:211">2-1-1</a> (Alaska 2-1-1) for help finding programs.</p>
             <button id="retry-btn" class="btn-secondary">Try Again</button>
         </div>
     </div>
