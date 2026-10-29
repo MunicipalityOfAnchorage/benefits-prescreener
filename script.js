@@ -416,6 +416,17 @@ function restartQuestionnaire() {
     focusCurrentQuestion();
 }
 
+// Inside an iframe: tell the parent page our height so it can size the frame
+// and the results list isn't cut off. The parent listens for 'prescreener-height'.
+if (root === document && window.self !== window.top) {
+    const container = document.querySelector('.container');
+    // min-height:100vh would track the iframe's height, so the frame could never shrink
+    container.style.minHeight = '0';
+    const postHeight = () => window.parent.postMessage(
+        { type: 'prescreener-height', height: container.offsetHeight }, '*');
+    new ResizeObserver(postHeight).observe(container);
+    window.addEventListener('load', postHeight);
+}
 
 // Development helper: Add some console logging for debugging
 function debugLog(message, data = null) {
