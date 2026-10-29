@@ -1,3 +1,8 @@
+(function () {
+// Root: the embed mount on Revize, or the whole page when standalone
+const root = document.getElementById('benefits-prescreener') || document;
+const BASE = window.BENEFITS_PRESCREENER_BASE || '';
+
 // Global variables
 let benefitsData = [];
 let userResponses = {};
@@ -5,31 +10,36 @@ let currentQuestion = 1;
 const totalQuestions = 6;
 
 // DOM elements
-const questionnaire = document.getElementById('questionnaire');
-const results = document.getElementById('results');
-const loading = document.getElementById('loading');
-const error = document.getElementById('error');
-const form = document.getElementById('benefits-form');
-const benefitsList = document.getElementById('benefits-list');
-const noBenefits = document.getElementById('no-benefits');
-const restartBtn = document.getElementById('restart-btn');
-const restartBtnTop = document.getElementById('restart-btn-top');
-const retryBtn = document.getElementById('retry-btn');
-const questionError = document.getElementById('question-error');
+const questionnaire = root.querySelector('#questionnaire');
+const results = root.querySelector('#results');
+const loading = root.querySelector('#loading');
+const error = root.querySelector('#error');
+const form = root.querySelector('#benefits-form');
+const benefitsList = root.querySelector('#benefits-list');
+const noBenefits = root.querySelector('#no-benefits');
+const restartBtn = root.querySelector('#restart-btn');
+const restartBtnTop = root.querySelector('#restart-btn-top');
+const retryBtn = root.querySelector('#retry-btn');
+const questionError = root.querySelector('#question-error');
 
 // Navigation elements
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const submitBtn = document.getElementById('submit-btn');
-const progressFill = document.getElementById('progress-fill');
-const currentQuestionSpan = document.getElementById('current-question');
-const totalQuestionsSpan = document.getElementById('total-questions');
+const prevBtn = root.querySelector('#prev-btn');
+const nextBtn = root.querySelector('#next-btn');
+const submitBtn = root.querySelector('#submit-btn');
+const progressFill = root.querySelector('#progress-fill');
+const currentQuestionSpan = root.querySelector('#current-question');
+const totalQuestionsSpan = root.querySelector('#total-questions');
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
     loadBenefitsData();
     setupEventListeners();
-});
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // Setup event listeners
 function setupEventListeners() {
@@ -43,8 +53,8 @@ function setupEventListeners() {
     prevBtn.addEventListener('click', prevQuestion);
     
     // Handle "none" checkbox exclusivity
-    const noneCheckbox = document.querySelector('input[name="circumstances"][value="none"]');
-    const otherCheckboxes = document.querySelectorAll('input[name="circumstances"]:not([value="none"])');
+    const noneCheckbox = root.querySelector('input[name="circumstances"][value="none"]');
+    const otherCheckboxes = root.querySelectorAll('input[name="circumstances"]:not([value="none"])');
     
     if (noneCheckbox && otherCheckboxes.length > 0) {
         noneCheckbox.addEventListener('change', function() {
@@ -70,7 +80,7 @@ function setupEventListeners() {
 function loadBenefitsData() {
     showSection('loading');
     
-    Papa.parse('benefits-data.csv', {
+    Papa.parse(BASE + 'benefits-data.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -268,7 +278,7 @@ function displayResults(matchingBenefits) {
     }
     
     showSection('results');
-    document.getElementById('results-heading').focus();
+    root.querySelector('#results-heading').focus();
 }
 
 // Create benefit card HTML
@@ -302,7 +312,7 @@ function escapeHtml(text) {
 function showSection(sectionName) {
     const sections = ['questionnaire', 'results', 'loading', 'error'];
     sections.forEach(section => {
-        const element = document.getElementById(section);
+        const element = root.querySelector('#' + section);
         if (element) {
             element.classList.toggle('active', section === sectionName);
         }
@@ -331,13 +341,13 @@ function prevQuestion() {
 
 function updateQuestionDisplay() {
     // Hide all question slides
-    const questionSlides = document.querySelectorAll('.question-slide');
+    const questionSlides = root.querySelectorAll('.question-slide');
     questionSlides.forEach(slide => {
         slide.classList.remove('active');
     });
     
     // Show current question
-    const currentSlide = document.querySelector(`[data-question="${currentQuestion}"]`);
+    const currentSlide = root.querySelector(`[data-question="${currentQuestion}"]`);
     if (currentSlide) {
         currentSlide.classList.add('active');
     }
@@ -370,12 +380,12 @@ function updateQuestionDisplay() {
 
 // Move keyboard and screen reader focus to the current question
 function focusCurrentQuestion() {
-    const legend = document.querySelector(`[data-question="${currentQuestion}"] legend`);
+    const legend = root.querySelector(`[data-question="${currentQuestion}"] legend`);
     if (legend) legend.focus();
 }
 
 function validateCurrentQuestion() {
-    const currentSlide = document.querySelector(`[data-question="${currentQuestion}"]`);
+    const currentSlide = root.querySelector(`[data-question="${currentQuestion}"]`);
     if (!currentSlide) return false;
     
     // Check for radio buttons
@@ -413,3 +423,4 @@ function debugLog(message, data = null) {
         console.log(`[Benefits Screener] ${message}`, data);
     }
 }
+})();
